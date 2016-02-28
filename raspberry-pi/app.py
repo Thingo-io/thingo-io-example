@@ -10,7 +10,9 @@ config = ConfigParser.ConfigParser()
 config.read("./config.ini")
 thingID = config.get("thingo.io", "thingID")
 switchPin = config.getint("device", "switch_pin")
+switchItemKey = config.get("device", "switch_item_key")
 dht11Pin = config.getint("device", "dht11_pin")
+dhtItemKey = config.get("device", "dht11_item_key")
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(switchPin, GPIO.OUT)
 dhtreader.init()
@@ -19,7 +21,7 @@ def reportTemperature():
     try:
         t, h = dhtreader.read(11, dht11Pin)
         print("Temp = {0} *C".format(t))
-        client.publish("/" + thingID + "/n1", t)
+        client.publish("/" + thingID + "/" + dhtItemKey, t)
     except:
         print "Unexpected error:", sys.exc_info()[0]
 
@@ -37,7 +39,7 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     itemKey = msg.topic.replace("/"+thingID+"/", "")
     print(itemKey + " " + str(msg.payload))
-    if itemKey == "sw1":
+    if itemKey == switchItemKey:
         switchValue = int(msg.payload)
         GPIO.output(switchPin, switchValue)
 
