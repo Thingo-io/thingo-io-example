@@ -1,6 +1,6 @@
 # Thingo.io NodeMCU (ESP8266) Example
 
-This example demonstrates how to connect NodeMCU to thingo.io 
+This example demonstrates how to connect NodeMCU to Thingo.io 
 
 ## Hardware preparation
 

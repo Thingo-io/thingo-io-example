@@ -1,6 +1,6 @@
 # Thingo.io Raspberry Pi Example
 
-This example demonstrates how to connect raspberry pi to thingo.io using python.
+This example demonstrates how to connect raspberry pi to Thingo.io using python.
 
 ## Hardware preparation
 
