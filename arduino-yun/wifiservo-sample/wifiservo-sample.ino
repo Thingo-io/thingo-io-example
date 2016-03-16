@@ -9,7 +9,7 @@
 #define THING_SECRET "{{Thing Secret}}"
 
 #define PUBLISH_INTERVAL 3000 // 3 seconds
-#define PUBLISH_TOPIC "rotation"
+#define PUBLISH_ITEMKEY "rotation"
 
 YunClient yun;
 PubSubClient pubsub(yun);
@@ -47,7 +47,7 @@ void loop() {
   // Read the actual servo value and publish reading to Thingo.io within a set time interval
   if (millis() > (time + PUBLISH_INTERVAL)) {
     time = millis();
-    String topic = "/" + String(THING_ID) + "/" + PUBLISH_TOPIC;
+    String topic = "/" + String(THING_ID) + "/" + PUBLISH_ITEMKEY;
     char data[10];
     int current = servo.read();
     dtostrf(current, 1, 2, data);
